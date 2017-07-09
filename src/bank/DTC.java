@@ -3,8 +3,6 @@ package bank;
 import base.IO.log.Log;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -13,8 +11,8 @@ import java.io.IOException;
 import java.util.Date;
 
 /**
- * Õâ´úÂëĞ´µÃÎÒ¶¼¿´²»¶®Ò²ÊÇ·şÁË
- * ¼Ì³ĞThreadÊÇÎªÁË¿ÉÒÔ½øĞĞ¶àÏß³Ì
+ * ï¿½ï¿½ï¿½ï¿½ï¿½Ğ´ï¿½ï¿½ï¿½Ò¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò²ï¿½Ç·ï¿½ï¿½ï¿½
+ * ï¿½Ì³ï¿½Threadï¿½ï¿½Îªï¿½Ë¿ï¿½ï¿½Ô½ï¿½ï¿½Ğ¶ï¿½ï¿½ß³ï¿½
  * Created by zyvis on 2017/5/23.
  */
 public final class DTC extends Thread{
@@ -76,8 +74,8 @@ public final class DTC extends Thread{
     protected String update() {
         return new String("" +
                 "ver 1.1" + "\n"+
-                "ĞÂÔöÁË¿ÉÒÔÔÚÔ­ÓĞÖÕµã¼ÌĞøÑÓÊ±µÄ¹¦ÄÜ" +"\n"+
-                "Ìí¼ÓÁË¸üĞÂÈÕÖ¾µÄ¹¦ÄÜ" +"\n"+
+                "ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿ï¿½ï¿½ï¿½ï¿½ï¿½Ô­ï¿½ï¿½ï¿½Õµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Ä¹ï¿½ï¿½ï¿½" +"\n"+
+                "ï¿½ï¿½ï¿½ï¿½Ë¸ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾ï¿½Ä¹ï¿½ï¿½ï¿½" +"\n"+
                 "" +
                 "");
     }
