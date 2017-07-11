@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/gitvisntool.iml" filepath="$PROJECT_DIR$/gitvisntool.iml" />
+      <module fileurl="file://$PROJECT_DIR$/VisnTool.iml" filepath="$PROJECT_DIR$/VisnTool.iml" />
     </modules>
   </component>
 </project>
