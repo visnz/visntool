@@ -12,6 +12,33 @@ import java.util.LinkedList;
  */
 public final class Log {
 
+    /**
+     * 枚举了五个对象
+     */
+    public enum Level{
+        Verbose,Debug,Info,Warn,Error;
+        public  String name;
+        public int level;
+        public Color color;
+        private static void init(){
+            Verbose.name="verbose";
+            Verbose.level=100;
+            Verbose.color=Color.white;
+            Debug.name="debug";
+            Debug.level=200;
+            Debug.color=Color.blue;
+            Info.name="info";
+            Info.level=300;
+            Info.color=Color.green;
+            Warn.name="warn";
+            Warn.level=400;
+            Warn.color=Color.yellow;
+            Error.name="error";
+            Error.level=500;
+            Error.color=Color.red;
+        }
+    }
+
     private static class LogInside {
         private final static Log log = new Log();
     }
@@ -20,7 +47,7 @@ public final class Log {
      * 隐藏构造器，不允许创建对象
      */
     private Log() {
-        logcats = new LinkedList<>();
+        logcats = new LinkedList<Logcat>();
     }
 
     ;
@@ -34,32 +61,6 @@ public final class Log {
         return LogInside.log.logcats;
     }
 
-    /**
-     * 此标识符指定为最基本的日志输出
-     */
-    public final static Level verbose = new Level("Verbose", 100);
-    public final static Color verbose_color = Color.gray;
-    /**
-     * 此标识符指定为调试信息的输出
-     */
-    public final static Level debug = new Level("Debug", 200);
-    public final static Color debug_color = Color.blue;
-    /**
-     * 此标识符指定为对需要搜集的用户信息的区分
-     */
-    public final static Level info = new Level("Info;", 300);
-    public final static Color info_color = Color.green;
-    /**
-     * 此标识符指定为可能存在潜在风险的地方
-     */
-    public final static Level warn = new Level("Warn", 400);
-    public final static Color warn_color = Color.yellow;
-    /**
-     * 此标识符指定为对错误信息的指示
-     * 通常包含在错误catch异常等语句中
-     */
-    public final static Level error = new Level("Error", 500);
-    public final static Color error_color = Color.red;
 
     /**
      * 此方法调用线程的堆栈追踪，可以查询到调用这个方法的类和方法
@@ -85,70 +86,70 @@ public final class Log {
 
 
     public static void v() {
-        LogInside.log.boardcast(new SingleLog(Log.verbose, getTag(), getTag()+" run ."));
+        LogInside.log.boardcast(new SingleLog(Level.Verbose, getTag(), getTag()+" run ."));
     }
 
     public static void v(String msg) {
-        LogInside.log.boardcast(new SingleLog(Log.verbose, getTag(), msg));
+        LogInside.log.boardcast(new SingleLog(Level.Verbose, getTag(), msg));
     }
     public static void d(String msg) {
-        LogInside.log.boardcast(new SingleLog(Log.debug, getTag(), msg));
+        LogInside.log.boardcast(new SingleLog(Level.Debug, getTag(), msg));
     }
 
     public static void i(String msg) {
-        LogInside.log.boardcast(new SingleLog(Log.info, getTag(), msg));
+        LogInside.log.boardcast(new SingleLog(Level.Info, getTag(), msg));
     }
 
     public static void w(String msg) {
-        LogInside.log.boardcast(new SingleLog(Log.warn, getTag(), msg));
+        LogInside.log.boardcast(new SingleLog(Level.Warn, getTag(), msg));
     }
 
     public static void e(String msg) {
-        LogInside.log.boardcast(new SingleLog(Log.error, getTag(), msg));
+        LogInside.log.boardcast(new SingleLog(Level.Error, getTag(), msg));
     }
 
     public static void d(String msg, Throwable tr) {
-        LogInside.log.boardcast(new SingleLog(Log.debug, getTag(), msg, tr));
+        LogInside.log.boardcast(new SingleLog(Level.Debug, getTag(), msg, tr));
     }
 
     public static void w(String msg, Throwable tr) {
-        LogInside.log.boardcast(new SingleLog(Log.warn, getTag(), msg, tr));
+        LogInside.log.boardcast(new SingleLog(Level.Warn, getTag(), msg, tr));
     }
 
     public static void e(String msg, Throwable tr) {
-        LogInside.log.boardcast(new SingleLog(Log.error, getTag(), msg, tr));
+        LogInside.log.boardcast(new SingleLog(Level.Error, getTag(), msg, tr));
     }
 
     public static void v(String tag, String msg) {
-        LogInside.log.boardcast(new SingleLog(Log.verbose, tag, msg));
+        LogInside.log.boardcast(new SingleLog(Level.Verbose, tag, msg));
     }
 
     public static void d(String tag, String msg) {
-        LogInside.log.boardcast(new SingleLog(Log.debug, tag, msg));
+        LogInside.log.boardcast(new SingleLog(Level.Debug, tag, msg));
     }
 
     public static void i(String tag, String msg) {
-        LogInside.log.boardcast(new SingleLog(Log.info, tag, msg));
+        LogInside.log.boardcast(new SingleLog(Level.Info, tag, msg));
     }
 
     public static void w(String tag, String msg) {
-        LogInside.log.boardcast(new SingleLog(Log.warn, tag, msg));
+        LogInside.log.boardcast(new SingleLog(Level.Warn, tag, msg));
     }
 
     public static void e(String tag, String msg) {
-        LogInside.log.boardcast(new SingleLog(Log.error, tag, msg));
+        LogInside.log.boardcast(new SingleLog(Level.Error, tag, msg));
     }
 
     public static void d(String tag, String msg, Throwable tr) {
-        LogInside.log.boardcast(new SingleLog(Log.debug, tag, msg, tr));
+        LogInside.log.boardcast(new SingleLog(Level.Debug, tag, msg, tr));
     }
 
     public static void w(String tag, String msg, Throwable tr) {
-        LogInside.log.boardcast(new SingleLog(Log.warn, tag, msg, tr));
+        LogInside.log.boardcast(new SingleLog(Level.Warn, tag, msg, tr));
     }
 
     public static void e(String tag, String msg, Throwable tr) {
-        LogInside.log.boardcast(new SingleLog(Log.error, tag, msg, tr));
+        LogInside.log.boardcast(new SingleLog(Level.Error, tag, msg, tr));
     }
 
     /**
@@ -158,7 +159,7 @@ public final class Log {
      *
      * @param singleLog
      */
-    private synchronized void boardcast(SingleLog singleLog) {
+    private synchronized void boardcast(final SingleLog singleLog) {
         LogInside.log.logcats.forEach((i) -> i.filter(singleLog));
     }
 
@@ -180,11 +181,11 @@ public final class Log {
      */
     public static Level[] getAllLevel() {
         return new Level[]{
-                Log.verbose,
-                Log.debug,
-                Log.info,
-                Log.warn,
-                Log.error
+                Level.Verbose,
+                Level.Debug,
+                Level.Info,
+                Level.Warn,
+                Level.Error
         };
     }
 

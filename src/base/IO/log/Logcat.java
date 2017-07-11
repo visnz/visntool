@@ -53,7 +53,7 @@ public abstract class Logcat {
      * 构造函数的时候初始化等级筛选器和Tag筛选器
      */
     private Logcat() {
-        tagFilter = new LinkedHashMap<>();
+        tagFilter = new LinkedHashMap<String, Boolean>();
     }
 
     /**
@@ -67,7 +67,7 @@ public abstract class Logcat {
         this.outputStream = outputStream;
     }
 
-    public void setLevelFilter(Level levelFilter) {
+    public void setLevelFilter(Log.Level levelFilter) {
         this.levelFilter = levelFilter.level;
     }
     public void logAll() {

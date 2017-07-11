@@ -14,7 +14,7 @@ public class SingleLog {
      * Level对象定义了Log最基础的等级
      * 是最基本的区分方法
      */
-    protected Level level;
+    protected Log.Level level;
     /**
      * 默认的Tag是指向当前的类和方法
      * 调用者可以自行创建Tag，在Logcat中进行区分
@@ -31,14 +31,14 @@ public class SingleLog {
      */
     protected Throwable tr;
 
-    protected SingleLog(Level level, String tag, String msg, Throwable tr) {
+    protected SingleLog(Log.Level level, String tag, String msg, Throwable tr) {
         this.level = level;
         this.tag = tag;
         this.msg = msg;
         this.tr = tr;
     }
 
-    protected SingleLog(Level level, String tag, String msg) {
+    protected SingleLog(Log.Level level, String tag, String msg) {
         this.level = level;
         this.tag = tag;
         this.msg = msg;
