@@ -13,8 +13,6 @@ import java.io.IOException;
 import java.util.Date;
 
 /**
- * �����д���Ҷ�������Ҳ�Ƿ���
- * �̳�Thread��Ϊ�˿��Խ��ж��߳�
  * Created by zyvis on 2017/5/23.
  */
 public final class DTC extends Thread{
@@ -76,9 +74,6 @@ public final class DTC extends Thread{
     protected String update() {
         return new String("" +
                 "ver 1.1" + "\n"+
-                "�����˿�����ԭ���յ������ʱ�Ĺ���" +"\n"+
-                "����˸�����־�Ĺ���" +"\n"+
-                "" +
                 "");
     }
 
