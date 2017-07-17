@@ -11,12 +11,24 @@ import java.util.List;
  * Created by zyvis on 2017/5/28.
  */
 public class DefaultLogcat extends Logcat {
+
+
+
     /**
      * 用于每一个Log进行临时信息存储，可以通过子类print覆写进行重引导
      * 在此作为一个筛选的记录仪，默认使用ArrayList
+     * 静态存在，即Logcat类子对象共享一个LogList
      */
-    private List<SingleLog> logList;
+    private static List<SingleLog> logList;
 
+    /**
+     * 类对于Loglist进行封装，所有子类共享一个
+     * 取出的对象不能修改
+     * @return logList
+     */
+    public List<SingleLog> getLogList() {
+        return logList;
+    }
     /**
      * levelFilter中指定不打印、或tagFilter指定不打印
      * 则直接返回
@@ -27,7 +39,10 @@ public class DefaultLogcat extends Logcat {
     @Override
     public void filter(SingleLog singleLog) {
         collect(singleLog);
-        if ((singleLog.level.level<levelFilter) || (tagFilter.containsKey(singleLog.tag) && !tagFilter.get(singleLog.tag)))
+        if ((singleLog.level.level
+                <levelFilter.level)
+                || (tagFilter.containsKey(singleLog.tag)
+                && !tagFilter.get(singleLog.tag)))
             return;
         print(singleLog);
     }
@@ -46,6 +61,7 @@ public class DefaultLogcat extends Logcat {
     /**
      * 根据父类的指引，在{@link #filter(SingleLog)}开始先调用
      * 将log推入LogList
+     * 通过list收集Log
      *
      * @param singleLog 一个日志
      */

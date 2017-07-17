@@ -15,7 +15,11 @@ public abstract class Logcat {
      */
     public OutputStream outputStream;
 
-    protected int levelFilter=0;
+    /**
+     * 指定当前Logcat的输出等级，如Error则为全部输出
+     * None则全不输出
+     */
+    protected Log.Level levelFilter;
     /**
      * 每一个Logcat拥有自己的Tag筛选器，包括一个Tag-开关键值对
      * 用于控制每一个携带Tag的Log是否打印。
@@ -53,12 +57,13 @@ public abstract class Logcat {
      * 构造函数的时候初始化等级筛选器和Tag筛选器
      */
     private Logcat() {
+        levelFilter= Log.Level.Verbose;
         tagFilter = new LinkedHashMap<String, Boolean>();
     }
 
     /**
      * 可以在默认Logcat构造时重新定义输出流，
-     * 同时会调用{@link #Logcat()}进行表格初始化
+     * 同时会调用{@link base.IO.log.Logcat#Logcat()}进行表格初始化
      *
      * @param outputStream
      */
@@ -68,12 +73,14 @@ public abstract class Logcat {
     }
 
     public void setLevelFilter(Log.Level levelFilter) {
-        this.levelFilter = levelFilter.level;
+        this.levelFilter = levelFilter;
     }
     public void logAll() {
-        this.levelFilter = 0;
+        this.levelFilter = Log.Level.Verbose;
     }
-
+    public void logNone() {
+        this.levelFilter = Log.Level.None;
+    }
     /**
      * 此方法用于返回所有带Throwable的条目
      *

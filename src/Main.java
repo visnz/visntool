@@ -1,4 +1,6 @@
-import bank.FatherWindow;
+import base.IO.log.Log;
+
+import java.util.Random;
 
 /**
  * 此类用于测试
@@ -8,8 +10,9 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         VisntoolCore.install();//此行用于启动初始化
-
-        FatherWindow.setup();
+        Random a=new Random();
+        Log.d(a.nextDouble()+" out");
+                //FatherWindow.setup();
 //        FatherWindow.singleSetup(FatherWindow.DTCtag);
 
     }

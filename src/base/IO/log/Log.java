@@ -4,7 +4,6 @@ package base.IO.log;
 import java.awt.*;
 import java.util.Collection;
 import java.util.LinkedList;
-
 /**
  * https://developer.android.com/reference/android/util/Log.html
  * 此类包含了五种类型的日志输出方法，源自android.util.log类的仿生
@@ -16,11 +15,14 @@ public final class Log {
      * 枚举了五个对象
      */
     public enum Level{
-        Verbose,Debug,Info,Warn,Error;
+        None,Verbose,Debug,Info,Warn,Error;
         public  String name;
         public int level;
         public Color color;
         private static void init(){
+            None.name="none";
+            None.color=Color.gray;
+            None.level=600;
             Verbose.name="verbose";
             Verbose.level=100;
             Verbose.color=Color.white;
@@ -48,6 +50,7 @@ public final class Log {
      */
     private Log() {
         logcats = new LinkedList<Logcat>();
+        Level.init();
     }
 
     ;
@@ -161,6 +164,7 @@ public final class Log {
      */
     private synchronized void boardcast(final SingleLog singleLog) {
         LogInside.log.logcats.forEach((i) -> i.filter(singleLog));
+
     }
 
     /**
