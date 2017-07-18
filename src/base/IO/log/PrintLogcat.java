@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
+ * 此类用于指定把log打印到本地文件
  * Created by zyvis on 2017/7/17.
  */
 public class PrintLogcat extends DefaultLogcat{
@@ -21,12 +22,15 @@ public class PrintLogcat extends DefaultLogcat{
      */
     protected boolean printLog;
 
-
+    /**
+     * 初始化函数，创建文件会一路把目录创建过去
+     * @param path  指定输出的文件路径
+     */
     public PrintLogcat(File path) {
         path.mkdirs();
         File file;
         try {
-            file=new File(path+"\\Main_"+String.valueOf(System.currentTimeMillis()).substring(5)+".log");
+            file=new File(path+"\\Main_"+String.valueOf(System.currentTimeMillis()).substring(2)+".log");
             file.createNewFile();
             outputStream=new FileOutputStream(file);
         } catch (IOException e) {

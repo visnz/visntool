@@ -1,4 +1,5 @@
 import base.IO.log.Log;
+import net.PortListener;
 
 import java.util.Random;
 
@@ -12,7 +13,11 @@ public class Main {
         VisntoolCore.install();//此行用于启动初始化
         Random a=new Random();
         Log.d(a.nextDouble()+" out");
-                //FatherWindow.setup();
+        PortListener portListener=new PortListener(10086);
+        Thread.sleep(5000);
+        portListener.disconnect();
+
+//FatherWindow.setup();
 //        FatherWindow.singleSetup(FatherWindow.DTCtag);
 
     }
