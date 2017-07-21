@@ -63,7 +63,7 @@ public abstract class Logcat {
 
     /**
      * 可以在默认Logcat构造时重新定义输出流，
-     * 同时会调用{@link base.IO.log.Logcat#Logcat()}进行表格初始化
+     * 同时会调用{@link Logcat#Logcat()}进行表格初始化
      *
      * @param outputStream
      */
@@ -91,7 +91,7 @@ public abstract class Logcat {
     /**
      * 此方法用于对此Logcat对象进行Tag筛选规则的添加
      * 添加进去后{@link #filter(SingleLog)}方法应当完成
-     * 对此表格中所指定信息的筛选，默认开关为False
+     * 对此表格中所指定信息的筛选，默认开关为Falseu
      * 即调用该方法，则屏蔽所指定的Tag的日志
      * 关于Tag的获取，详见{@link Log#getNowTag()}可以获取当前的Tag
      *
@@ -99,5 +99,10 @@ public abstract class Logcat {
      */
     public void pass(String tag) {
         tagFilter.put(tag, false);
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass().getName()+" [ level : "+levelFilter+" , outputStream : "+outputStream.getClass().getName()+" ] "+super.toString();
     }
 }

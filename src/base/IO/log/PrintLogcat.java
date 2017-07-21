@@ -1,5 +1,7 @@
 package base.IO.log;
 
+import core.VisntoolCore;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,6 +11,12 @@ import java.io.IOException;
  * Created by zyvis on 2017/7/17.
  */
 public class PrintLogcat extends DefaultLogcat{
+    /**
+     * 此变量用于引用默认的log地址
+     * 可以在添加PrintLogcat的时候使用
+     */
+    public final static File defaultFilepath = new File(".\\log");
+
     public boolean isPrintLog() {
         return printLog;
     }
@@ -30,7 +38,7 @@ public class PrintLogcat extends DefaultLogcat{
         path.mkdirs();
         File file;
         try {
-            file=new File(path+"\\Main_"+String.valueOf(System.currentTimeMillis()).substring(2)+".log");
+            file=new File(path+"\\Main_"+String.valueOf(VisntoolCore.getStartTime()).substring(2)+".log");
             file.createNewFile();
             outputStream=new FileOutputStream(file);
         } catch (IOException e) {

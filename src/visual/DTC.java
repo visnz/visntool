@@ -1,4 +1,4 @@
-package bank;
+package visual;
 
 import base.IO.log.Log;
 

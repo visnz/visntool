@@ -3,6 +3,7 @@ package base.IO.log;
 
 import java.awt.*;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.LinkedList;
 /**
  * https://developer.android.com/reference/android/util/Log.html
@@ -15,30 +16,21 @@ public final class Log {
      * 枚举了五个对象
      */
     public enum Level{
-        None,Verbose,Debug,Info,Warn,Error;
+        None("none",Color.gray,600),
+        Verbose("verbose",Color.white,100),
+        Debug("debug",Color.blue,200),
+        Info("info",Color.green,300),
+        Warn("warn",Color.yellow,400),
+        Error("error",Color.red,500);
         public  String name;
         public int level;
         public Color color;
-        private static void init(){
-            None.name="none";
-            None.color=Color.gray;
-            None.level=600;
-            Verbose.name="verbose";
-            Verbose.level=100;
-            Verbose.color=Color.white;
-            Debug.name="debug";
-            Debug.level=200;
-            Debug.color=Color.blue;
-            Info.name="info";
-            Info.level=300;
-            Info.color=Color.green;
-            Warn.name="warn";
-            Warn.level=400;
-            Warn.color=Color.yellow;
-            Error.name="error";
-            Error.level=500;
-            Error.color=Color.red;
+        Level(String name,Color color,int level){
+            this.name=name;
+            this.color=color;
+            this.level=level;
         }
+
     }
 
     private static class LogInside {
@@ -50,19 +42,25 @@ public final class Log {
      */
     private Log() {
         logcats = new LinkedList<Logcat>();
-        Level.init();
     }
 
-    ;
+    /**
+     * @return 询问Log类是否输出
+     */
+    public boolean isLog() {
+        return log;
+    }
+
+    /**
+     * 指定log的输出与否
+     */
+    protected boolean log=true;
 
     /**
      * 用一个容器存放logcat的列表
      */
     private Collection<Logcat> logcats;
 
-    public static Collection<Logcat> getLogcats() {
-        return LogInside.log.logcats;
-    }
 
 
     /**
@@ -158,11 +156,11 @@ public final class Log {
     /**
      * 此方法将所有传入的Log扩散，广播到Log在记列表中的所有监听器
      * 可以使用{@link #addLogcat(Logcat)}添加监听器
-     * 通过{@link #getLogcats()}获取这个列表
      *
      * @param singleLog
      */
     private synchronized void boardcast(final SingleLog singleLog) {
+        if(!log)return;
         LogInside.log.logcats.forEach((i) -> i.filter(singleLog));
 
     }
@@ -173,24 +171,49 @@ public final class Log {
      * @param logcat Logcat的实体类
      */
     public static void addLogcat(Logcat logcat) {
+        System.out.println("check input logcat="+logcat.toString());
+        Iterator iterator=LogInside.log.logcats.iterator();
+        while(iterator.hasNext()){
+            Logcat tmp= (Logcat) iterator.next();
+            System.out.println("check once logcat="+tmp.toString());
+            if(tmp.equals(logcat)){
+                System.out.println("same");
+                return;
+            }
+        }
         LogInside.log.logcats.add(logcat);
+        Log.d("add new Logcat : "+logcat.toString());
     }
 
 
     /**
-     * 此方法归档Log支持的原始五个等级
+     * 此方法归档Log支持的原始五个等级和None
      * 返回为对象组
      *
      * @return Loglevel的对象组
      */
     public static Level[] getAllLevel() {
         return new Level[]{
+                Level.None,
                 Level.Verbose,
                 Level.Debug,
                 Level.Info,
                 Level.Warn,
                 Level.Error
         };
+    }
+    /**
+     * 关闭log输出功能
+     */
+    public void turnOff(){
+        log=false;
+    }
+
+    /**
+     * 打开log输出功能
+     */
+    public void turnOn(){
+        log=true;
     }
 
 }
