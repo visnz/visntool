@@ -103,6 +103,6 @@ public abstract class Logcat {
 
     @Override
     public String toString() {
-        return this.getClass().getName()+" [ level : "+levelFilter+" , outputStream : "+outputStream.getClass().getName()+" ] "+super.toString();
+        return this.getClass().getName()+" [ level : "+levelFilter+" , outputStream : "+ (outputStream==null?"null":outputStream.getClass().getName())+" ] "+super.toString();
     }
 }
