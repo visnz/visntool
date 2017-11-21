@@ -4,6 +4,7 @@ import base.MathMe;
 import base.Point;
 
 /**
+ * 一個線性回歸計算器
  * Created by zyvis on 2017/5/26.
  */
 public class LinearRegression {

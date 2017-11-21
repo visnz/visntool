@@ -1,7 +1,11 @@
 import base.IO.log.Log;
 import base.IO.log.PrintLogcat;
+import base.file.Encryption;
+import base.file.FileProxy;
+import base.tester.DataCreator;
 import core.VisntoolCore;
 
+import java.io.File;
 import java.util.Random;
 
 /**
@@ -13,17 +17,19 @@ public class Main {
 
         VisntoolCore.install();//此行用于启动初始化
         VisntoolCore.setPrintLog(PrintLogcat.defaultFilepath);
-        Random a=new Random();
 
-        Log.d(a.nextDouble()+" out");
-        Log.d(a.nextDouble()+" out");
-        Log.d(VisntoolCore.getDefaultLogcat().toString());
-        Log.addLogcat(VisntoolCore.getDefaultLogcat());
-        Log.d(a.nextDouble()+" out");
-        Log.d(a.nextDouble()+" out");
-        VisntoolCore.getDefaultLogcat().logAll();
-        Log.d(a.nextDouble()+" out");
-        Log.d(a.nextDouble()+" out");
+        FileProxy p1=new FileProxy(new File("./test1"),false);
+        //設置文件代理
+
+        String hex=p1.readByHex();
+        //以二進制讀取
+
+        String after=Encryption.calCheckSum_Hex(hex,20);
+        //傳入二進制文本和步長
+
+        Log.d(after);
+
+
 
         //PortListener portListener=new PortListener(10086);
 //        Thread.sleep(5000);
