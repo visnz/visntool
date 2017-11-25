@@ -3,6 +3,7 @@ package base.file;
 import base.IO.log.Log;
 
 import java.math.BigInteger;
+import java.util.Random;
 
 /**
  * Created by zyvis on 2017/11/21.
@@ -44,5 +45,14 @@ public class Encryption {
             sumall=sumall.add(tmpsum[i]);
         }
         return sumall.toString(16);
+    }
+    public static String randomHexKeyCreate(int size){
+        Random r=new Random();
+        String tmp="";
+        for (int i = 0; i < size; i++) {
+            tmp+=Integer.toHexString(r.nextInt(16));
+        }
+        return tmp;
+
     }
 }

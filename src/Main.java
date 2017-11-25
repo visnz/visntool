@@ -4,6 +4,8 @@ import base.file.Encryption;
 import base.file.FileProxy;
 import base.tester.DataCreator;
 import core.VisntoolCore;
+import myextends.Event;
+import myextends.Excited;
 
 import java.io.File;
 import java.util.Random;
@@ -18,17 +20,17 @@ public class Main {
         VisntoolCore.install();//此行用于启动初始化
         VisntoolCore.setPrintLog(PrintLogcat.defaultFilepath);
 
-        FileProxy p1=new FileProxy(new File("./test1"),false);
-        //設置文件代理
+        Excited.setupFile(new File("./excited"));
 
-        String hex=p1.readByHex();
-        //以二進制讀取
+        Log.d(Excited.getEvent().toString());
+        Log.d(Excited.getEvent().toString());
+        Log.d(Excited.getEvent().toString());
+        Log.d(Excited.getEvent().toString());
+        Log.d(Excited.getEvent().toString());
+        for (int i = 0; i < 20; i++) {
 
-        String after=Encryption.calCheckSum_Hex(hex,20);
-        //傳入二進制文本和步長
-
-        Log.d(after);
-
+            Excited.createEvent(new Event(Encryption.randomHexKeyCreate(10), "guaguagua", Event.LuckyLevel.getRandom(), "HUFIAHUFIA"));
+        }
 
 
         //PortListener portListener=new PortListener(10086);
