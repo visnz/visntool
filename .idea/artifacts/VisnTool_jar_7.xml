@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="VisnTool:jar-7">
+    <output-path>$PROJECT_DIR$/out/artifacts/VisnTool_jar_7</output-path>
+    <root id="archive" name="VisnTool.jar">
+      <element id="module-output" name="VisnTool" />
+      <element id="library" level="project" name="jdk1.7" />
+    </root>
+  </artifact>
+</component>
