@@ -1,4 +1,4 @@
-package base;
+package base.math;
 
 /**
  * 计算格式出现错误可以抛出此异常

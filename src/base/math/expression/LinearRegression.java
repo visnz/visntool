@@ -1,16 +1,16 @@
-package base.expression;
+package base.math.expression;
 
-import base.MathMe;
-import base.Point;
+import base.math.MathMe;
+import base.math.Point;
 
 /**
  * 一個線性回歸計算器
  * Created by zyvis on 2017/5/26.
  */
 public class LinearRegression {
-    Point[] points;
-    boolean expression=false;
-    double avrX, avrY,b,a;
+    private Point[] points;
+    private boolean expression=false;
+    private double avrX, avrY,b,a;
 
     public LinearRegression(Point[] points) {
         this.points = points;

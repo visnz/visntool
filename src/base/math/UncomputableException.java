@@ -1,4 +1,4 @@
-package base;
+package base.math;
 
 /**
  * 当数据出现不可计算的异常时候抛出

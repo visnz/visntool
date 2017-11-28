@@ -1,4 +1,4 @@
-package base;
+package base.math;
 
 /**
  * 此类包含xy两个变量，用于数学计算

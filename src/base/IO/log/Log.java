@@ -14,6 +14,7 @@ public final class Log {
 
     /**
      * 枚举了五个对象
+     * 分别指定五种级别的log
      */
     public enum Level{
         None("none",Color.gray,600),
@@ -161,8 +162,10 @@ public final class Log {
      */
     private synchronized void boardcast(final SingleLog singleLog) {
         if(!log)return;
-        LogInside.log.logcats.forEach((i) -> i.filter(singleLog));
-
+        for (Logcat logcat:
+                LogInside.log.logcats) {
+            logcat.filter(singleLog);
+        }
     }
 
     /**

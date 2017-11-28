@@ -46,6 +46,14 @@ public class Encryption {
         }
         return sumall.toString(16);
     }
+
+    /**
+     * 此方法创建一个十六进制的随机数
+     * 如(10) return b2c687c2aa
+     *
+     * @param size  随机数长度
+     * @return      一个十六进制的随机数
+     */
     public static String randomHexKeyCreate(int size){
         Random r=new Random();
         String tmp="";

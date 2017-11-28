@@ -72,15 +72,30 @@ public abstract class Logcat {
         this.outputStream = outputStream;
     }
 
+    /**
+     * 设置筛选级别，只输出该级别与以上的log
+     * 如 只输出warning以上的log，则Debug级别不会输出
+     *
+     * @param levelFilter
+     */
     public void setLevelFilter(Log.Level levelFilter) {
         this.levelFilter = levelFilter;
     }
+
+    /**
+     * 设置输出级别为全部输出，包括verbose级别以上
+     */
     public void logAll() {
         this.levelFilter = Log.Level.Verbose;
     }
+
+    /**
+     * 不输出任何的log
+     */
     public void logNone() {
         this.levelFilter = Log.Level.None;
     }
+
     /**
      * 此方法用于返回所有带Throwable的条目
      *
